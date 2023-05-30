@@ -1,0 +1,56 @@
+version: '3'
+services:
+
+  python:
+    build:
+      context: ./python
+      dockerfile: Dockerfile
+    command: pipenv run python3 main.py
+    volumes:
+      - ./python:/app
+
+  go:
+    build:
+      context: ./go
+      dockerfile: Dockerfile
+    command: go run main.go
+    volumes:
+      - ./go:/app
+  rust:
+    build:
+      context: ./rust
+      dockerfile: Dockerfile
+    command: cargo run
+    volumes:
+      - ./rust:/app
+  typescript:
+    build:
+      context: ./typescript
+      dockerfile: Dockerfile
+    command: npm run dev
+    volumes:
+      - ./typescript:/app
+
+  ruby:
+    build:
+      context: ./ruby
+      dockerfile: Dockerfile
+    command: ruby /var/www/main.rb
+    volumes:
+      - ./ruby:/app
+
+  cpp:
+    build:
+      context: ./cpp
+      dockerfile: Dockerfile
+    volumes:
+      - ./cpp:/app
+    command: bash -c ./main
+
+  cs:
+    build:
+      context: ./cs
+      dockerfile: Dockerfile
+    volumes:
+      - ./cs:/app
+    command: dotnet run
