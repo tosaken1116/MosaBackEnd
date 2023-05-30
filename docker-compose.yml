@@ -16,6 +16,7 @@ services:
     command: go run main.go
     volumes:
       - ./go:/app
+
   rust:
     build:
       context: ./rust
@@ -23,6 +24,7 @@ services:
     command: cargo run
     volumes:
       - ./rust:/app
+
   typescript:
     build:
       context: ./typescript
@@ -54,6 +56,7 @@ services:
     volumes:
       - ./cs:/app
     command: dotnet run
+
   r:
     build:
       context: ./R
@@ -61,3 +64,11 @@ services:
     volumes:
       - ./R:/app
     command: Rscript ./script.R
+
+  java:
+    build:
+      context: ./java
+      dockerfile: Dockerfile
+    volumes:
+      - ./java:/app
+    command: java Main.java
