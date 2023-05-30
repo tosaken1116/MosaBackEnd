@@ -54,3 +54,10 @@ services:
     volumes:
       - ./cs:/app
     command: dotnet run
+  r:
+    build:
+      context: ./R
+      dockerfile: Dockerfile
+    volumes:
+      - ./R:/app
+    command: Rscript ./script.R
