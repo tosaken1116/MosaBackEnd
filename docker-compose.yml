@@ -1,0 +1,20 @@
+version: "3"
+services:
+  ts:
+    build:
+      context: ./typescript
+    container_name: mosa-ts
+    volumes:
+      - ./typescript:/opt/typescript
+    command: npm run dev
+    ports:
+      - "3000:3000"
+  java:
+    build:
+      context: ./java
+    container_name: mosa-java
+    ports:
+      - 8080:8080
+    tty: true
+    volumes:
+      - ./java:/opt/java
