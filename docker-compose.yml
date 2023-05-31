@@ -54,10 +54,11 @@ services:
   cs:
     build:
       context: ./cs
-      dockerfile: Dockerfile
+    container_name: mosa-cs
     volumes:
-      - ./cs:/app
-    command: dotnet run
+      - ./cs:/opt/cs
+    ports:
+      - 8080:8080
 
   r:
     build:
