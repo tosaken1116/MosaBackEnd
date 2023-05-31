@@ -25,13 +25,15 @@ services:
     volumes:
       - ./rust:/app
 
-  typescript:
+  ts:
     build:
       context: ./typescript
-      dockerfile: Dockerfile
-    command: npm run dev
+    container_name: mosa-ts
     volumes:
-      - ./typescript:/app
+      - ./typescript:/opt/typescript
+    command: npm run dev
+    ports:
+      - "3000:3000"
 
   ruby:
     build:
@@ -68,7 +70,9 @@ services:
   java:
     build:
       context: ./java
-      dockerfile: Dockerfile
+    container_name: mosa-java
+    ports:
+      - 8080:8080
+    tty: true
     volumes:
-      - ./java:/app
-    command: java Main.java
+      - ./java:/opt/java

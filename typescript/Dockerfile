@@ -1,8 +1,9 @@
-FROM node:latest
+FROM node:18-alpine3.16
 
-RUN mkdir -p /app
-COPY . /app
-WORKDIR /app
+WORKDIR /opt/typescript
 
-RUN apt update
-RUN npm i
+RUN npm i -g npm
+COPY package*.json ./
+RUN npm install
+
+COPY . .
