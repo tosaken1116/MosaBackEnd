@@ -77,3 +77,19 @@ services:
     tty: true
     volumes:
       - ./java:/opt/java
+
+  elixir:
+    build:
+        context: ./elixir
+        dockerfile: Dockerfile
+    container_name: mosa-elixir
+    ports:
+      - '8080:8080'
+    command: mix phx.server
+    tty: true
+    environment:
+      - MIX_ENV=dev
+      - PORT=8080
+    volumes:
+      - ../:/app
+    working_dir: /app/src
