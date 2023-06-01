@@ -10,4 +10,4 @@ RUN pip install pipenv
 RUN pipenv install --system
 RUN pipenv install --skip-lock
 
-CMD ["uvicorn", "main:app", "--reload", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "main:app", "--reload", "--host", "0.0.0.0", "--port", "8080"]
