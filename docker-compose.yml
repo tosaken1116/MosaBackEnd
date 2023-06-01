@@ -104,3 +104,11 @@ services:
       - ../:/app
     working_dir: /app/src
 
+  php:
+    build:
+        context: ./php
+        dockerfile: Dockerfile
+    ports:
+      - '8080:80'
+    volumes:
+      - .:/var/www/html
