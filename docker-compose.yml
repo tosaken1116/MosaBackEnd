@@ -5,9 +5,13 @@ services:
     build:
       context: ./python
       dockerfile: Dockerfile
-    command: pipenv run python3 main.py
+    container_name: mosa-python
+    command: pipenv run uvicorn main:app --host 0.0.0.0 --reload
     volumes:
       - ./python:/app
+    ports:
+      - '8080:8080'
+    tty: true
 
   go:
     build:
@@ -39,7 +43,10 @@ services:
     build:
       context: ./ruby
       dockerfile: Dockerfile
-    command: ruby /var/www/main.rb
+    container_name: mosa-ruby
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 8080 -b '0.0.0.0'"
+    ports:
+      - 8080:8080
     volumes:
       - ./ruby:/app
 
