@@ -85,6 +85,16 @@ services:
     volumes:
       - ./java:/opt/java
 
+
+  dart:
+    build:
+      context: ./dart
+    container_name: mosa-dart
+    ports:
+      - 8080:8080
+    volumes:
+      - ./dart:/opt/dart
+
   elixir:
     build:
         context: ./elixir
@@ -100,3 +110,12 @@ services:
     volumes:
       - ../:/app
     working_dir: /app/src
+
+  php:
+    build:
+        context: ./php
+        dockerfile: Dockerfile
+    ports:
+      - '8080:80'
+    volumes:
+      - .:/var/www/html
