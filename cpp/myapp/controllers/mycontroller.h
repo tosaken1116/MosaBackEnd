@@ -13,5 +13,6 @@ class mycontroller : public drogon::HttpSimpleController<mycontroller>
     // ルートへのアクセスに対して、Getリクエストへのレスポンスを定義します。
     PATH_LIST_BEGIN
     PATH_ADD( "/", Get);
+    PATH_ADD("/hello", Get);
     PATH_LIST_END
 };
