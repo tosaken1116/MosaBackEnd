@@ -37,7 +37,7 @@
 
 ## R
 - ポート番号:50007
-- `/echo`:`hello world`を返却
+- `/hello`:`hello world`を返却
 
 ## ruby
 - ポート番号:50004
