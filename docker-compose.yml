@@ -58,7 +58,7 @@ services:
     volumes:
       - ./cpp:/app
     ports:
-      - 8000:8000
+      - 8080:8080
     command: bash -c "cd /app/myapp/build && ./myapp"
 
   cs:
