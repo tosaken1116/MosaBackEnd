@@ -41,6 +41,7 @@ services:
     container_name: mosa-ts
     volumes:
       - ./typescript:/opt/typescript
+      - ./typescript/node_modules:/opt/typescript/node_modules
     ports:
       - "50003:8000"
 
@@ -185,3 +186,4 @@ services:
 
 volumes:
   dbdata: null
+  node_modules:
