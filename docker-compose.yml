@@ -136,3 +136,21 @@ services:
       - '10012:80'
     volumes:
       - ./php:/app
+
+  scala:
+    build:
+      context: ./scala
+    container_name: mosa-scala
+    ports:
+      - 8080:8080
+    volumes:
+      - ./scala:/opt/scala
+
+  swift:
+    build:
+      context: ./swift
+    container_name: mosa-swift
+    ports:
+      - 8080:8080
+    volumes:
+      - ./swift:/opt/swift
