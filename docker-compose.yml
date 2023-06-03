@@ -17,6 +17,7 @@ services:
     build:
       context: ./go
       dockerfile: Dockerfile
+    container_name: mosa-go
     command: go run main.go
     ports:
       - '50001:8080'
@@ -27,6 +28,7 @@ services:
     build:
       context: ./rust
       dockerfile: Dockerfile
+    container_name: mosa-rust
     command: cargo run
     volumes:
       - ./rust:/app
@@ -78,6 +80,7 @@ services:
     build:
       context: ./R
       dockerfile: Dockerfile
+    container_name: mosa-r
     volumes:
       - './R/api.R:/plumber.R'
     ports:
@@ -132,6 +135,7 @@ services:
     build:
         context: ./php
         dockerfile: Dockerfile
+    container_name: mosa-php
     ports:
       - '50012:80'
     volumes:
