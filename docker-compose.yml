@@ -72,8 +72,9 @@ services:
       context: ./R
       dockerfile: Dockerfile
     volumes:
-      - ./R:/app
-    command: Rscript ./script.R
+      - './R/api.R:/plumber.R'
+    ports:
+      - 8000:8000
 
   java:
     build:
