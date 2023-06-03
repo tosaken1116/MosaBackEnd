@@ -17,6 +17,7 @@
 
 ## go
 - ポート番号:50001
+- `/hello`:`Hello World`を返却
 
 
 ## java
