@@ -31,7 +31,7 @@ services:
     volumes:
       - ./rust:/app
     ports:
-      - "10002:3000"
+      - "10002:8080"
 
   ts:
     build:
