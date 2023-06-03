@@ -1,0 +1,47 @@
+openapi: "3.0.3"
+info:
+  title: "kotlin API"
+  description: "kotlin API"
+  version: "1.0.0"
+servers:
+- url: "https://kotlin"
+paths:
+  /:
+    get:
+      description: ""
+      responses:
+        "200":
+          description: "OK"
+          content:
+            text/plain:
+              schema:
+                type: "string"
+              examples:
+                Example#1:
+                  value: "Hello World!"
+  /callback:
+    get:
+      description: ""
+      responses:
+        "200":
+          description: "OK <br> Redirect"
+          content:
+            text/plain:
+              schema:
+                type: "string"
+              examples:
+                Example#1:
+                  value: "/hello"
+  /login:
+    get:
+      description: ""
+      responses:
+        "200":
+          description: "OK <br> Redirect"
+          content:
+            text/plain:
+              schema:
+                type: "string"
+              examples:
+                Example#1:
+                  value: "/callback"
