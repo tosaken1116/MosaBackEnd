@@ -41,9 +41,8 @@ services:
     container_name: mosa-ts
     volumes:
       - ./typescript:/opt/typescript
-    command: npm run dev
     ports:
-      - "50003:3000"
+      - "50003:8000"
 
   ruby:
     build:
