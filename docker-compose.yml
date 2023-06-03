@@ -54,9 +54,12 @@ services:
     build:
       context: ./cpp
       dockerfile: Dockerfile
+    container_name: mosa-cpp
     volumes:
       - ./cpp:/app
-    command: bash -c ./main
+    ports:
+      - 8000:8000
+    command: bash -c "cd /app/myapp/build && ./myapp"
 
   cs:
     build:
