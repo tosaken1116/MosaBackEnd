@@ -142,7 +142,7 @@ services:
       context: ./scala
     container_name: mosa-scala
     ports:
-      - 8080:8080
+      - 50013:8080
     volumes:
       - ./scala:/opt/scala
 
@@ -151,6 +151,6 @@ services:
       context: ./swift
     container_name: mosa-swift
     ports:
-      - 8080:8080
+      - 50014:8080
     volumes:
       - ./swift:/opt/swift
