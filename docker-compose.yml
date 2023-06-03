@@ -104,3 +104,12 @@ services:
       - ../:/app
     working_dir: /app/src
 
+  kotlin:
+    build:
+      context: ./kotlin
+    container_name: mosa-kotlin
+    ports:
+      - 8080:8080
+    volumes:
+      - ./kotlin:/opt/kotlin
+
