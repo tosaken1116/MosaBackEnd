@@ -1,4 +1,4 @@
-#* @get /echo
+#* @get /hello
 function(){
    "Hello World"
 }

@@ -10,7 +10,7 @@ services:
     volumes:
       - ./python:/app
     ports:
-      - '10000:8080'
+      - '50000:8080'
     tty: true
 
   go:
@@ -19,7 +19,7 @@ services:
       dockerfile: Dockerfile
     command: go run main.go
     ports:
-      - '10001:8080'
+      - '50001:8080'
     volumes:
       - ./go:/app
 
@@ -31,7 +31,7 @@ services:
     volumes:
       - ./rust:/app
     ports:
-      - "10002:3000"
+      - "50002:8080"
 
   ts:
     build:
@@ -41,7 +41,7 @@ services:
       - ./typescript:/opt/typescript
     command: npm run dev
     ports:
-      - "10003:3000"
+      - "50003:3000"
 
   ruby:
     build:
@@ -50,7 +50,7 @@ services:
     container_name: mosa-ruby
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 8080 -b '0.0.0.0'"
     ports:
-      - 10004:8080
+      - 50004:8080
     volumes:
       - ./ruby:/app
 
@@ -63,7 +63,7 @@ services:
       - ./cpp:/app
     command: bash -c "cd /app/myapp/build && ./myapp"
     ports:
-      - 10005:8080
+      - 50005:8080
 
   cs:
     build:
@@ -72,7 +72,7 @@ services:
     volumes:
       - ./cs:/opt/cs
     ports:
-      - 10006:8080
+      - 50006:8080
 
   r:
     build:
@@ -81,14 +81,14 @@ services:
     volumes:
       - './R/api.R:/plumber.R'
     ports:
-      - 10007:8000
+      - 50007:8000
 
   java:
     build:
       context: ./java
     container_name: mosa-java
     ports:
-      - 10008:8080
+      - 50008:8080
     tty: true
     volumes:
       - ./java:/opt/java
@@ -99,7 +99,7 @@ services:
       context: ./dart
     container_name: mosa-dart
     ports:
-      - 10009:8080
+      - 50009:8080
     volumes:
       - ./dart:/opt/dart
 
@@ -109,7 +109,7 @@ services:
         dockerfile: Dockerfile
     container_name: mosa-elixir
     ports:
-      - '10010:8080'
+      - '50010:8080'
     command: mix phx.server
     tty: true
     environment:
@@ -124,7 +124,7 @@ services:
       context: ./kotlin
     container_name: mosa-kotlin
     ports:
-      - 10011:8080
+      - 50011:8080
     volumes:
       - ./kotlin:/opt/kotlin
 
@@ -133,7 +133,7 @@ services:
         context: ./php
         dockerfile: Dockerfile
     ports:
-      - '10012:80'
+      - '50012:80'
     volumes:
       - ./php:/app
 
@@ -154,3 +154,25 @@ services:
       - 50014:8080
     volumes:
       - ./swift:/opt/swift
+
+  db:
+    container_name: mosa-db
+    image: postgres:14
+    volumes:
+      - dbdata:/var/lib/postgresql/data/
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+
+  adminer:
+    container_name: mosa-adminer
+    image: adminer:4.7.5
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
+volumes:
+  dbdata: null

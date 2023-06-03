@@ -1,4 +1,4 @@
-FROM golang:1.16-buster AS builder
+FROM golang:1.19
 RUN mkdir -p /app
 COPY . /app
 WORKDIR /app
