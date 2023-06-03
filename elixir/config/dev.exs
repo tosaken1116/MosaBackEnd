@@ -1,13 +1,12 @@
 import Config
 
 # Configure your database
-config :myapp, Myapp.Repo,
-  username: "postgres",
-  password: "postgres",
-  hostname: "localhost",
-  database: "myapp_dev",
-  stacktrace: true,
-  show_sensitive_data_on_connection_error: true,
+config :my_app, MyApp.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  username: System.get_env("POSTGRES_USER"),
+  password: System.get_env("POSTGRES_PASSWORD"),
+  database: System.get_env("POSTGRES_DB"),
+  hostname: mosa-db
   pool_size: 10
 
 # For development, we disable any cache and enable
