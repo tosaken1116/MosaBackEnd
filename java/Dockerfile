@@ -1,4 +1,6 @@
-FROM openjdk:17-alpine
+FROM openjdk:17-jdk-buster
+
+RUN apt-get update && apt-get install -y findutils
 
 RUN mkdir -p /opt/java
 COPY . /opt/java/
