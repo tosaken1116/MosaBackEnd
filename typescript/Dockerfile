@@ -1,9 +1,14 @@
-FROM node:18-alpine3.16
+FROM node:18
 
-WORKDIR /opt/typescript
+WORKDIR /opt/typescript/
 
-RUN npm i -g npm
-COPY package*.json ./
-RUN npm install
+COPY ./package* ./
+COPY ./yarn* ./
+
+RUN yarn
 
 COPY . .
+
+EXPOSE 8000
+
+CMD yarn dev
