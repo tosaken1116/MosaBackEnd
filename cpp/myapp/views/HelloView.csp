@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<%c++
+	// name 変数にパラメータからnameで識別される値を指定の型で取得
+    auto viewName=@@.get<std::string>("name");
+	bool nameIsEmpty = viewName == "";
+	if (nameIsEmpty)
+		viewName = "anonymous";
+	auto message = "Hello, " + viewName + " from a CSP template";
+%>
+<head>
+    <meta charset="UTF-8">
+    <title>{% viewName %}</title>
+</head>
+<body>
+    <%c++ $$<<message; %>
+	<%c++
+	if (nameIsEmpty)
+	{
+		$$ << "<br>"
+			<< "You can revisit the same page and append ?request_name=<i>your_name</i> to change the name";
+	}
+	%>
+</body>
+</html>
