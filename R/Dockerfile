@@ -1,8 +1,4 @@
-FROM r-base
+FROM rstudio/plumber
+COPY api.R /plumber.R
 
-
-RUN mkdir -p /app
-COPY . /app
-WORKDIR /app
-
-RUN apt-get update
+CMD ["./plumber.R"]
