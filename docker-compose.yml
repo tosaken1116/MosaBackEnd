@@ -137,6 +137,24 @@ services:
     volumes:
       - ./php:/app
 
+  scala:
+    build:
+      context: ./scala
+    container_name: mosa-scala
+    ports:
+      - 50013:8080
+    volumes:
+      - ./scala:/opt/scala
+
+  swift:
+    build:
+      context: ./swift
+    container_name: mosa-swift
+    ports:
+      - 50014:8080
+    volumes:
+      - ./swift:/opt/swift
+
   db:
     container_name: mosa-db
     image: postgres:14
