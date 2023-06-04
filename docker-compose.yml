@@ -116,14 +116,13 @@ services:
     container_name: mosa-elixir
     ports:
       - '50010:8080'
-    command: mix phx.server
+    command: bash -c "mix deps.get && mix ecto.setup && mix phx.server"
     tty: true
     environment:
       - MIX_ENV=dev
       - PORT=8080
     volumes:
-      - ../:/app
-    working_dir: /app/src
+      - ./elixir:/app
     depends_on:
       - db
     env_file: .env

@@ -13,7 +13,7 @@
 
 ## elixir
 - ポート番号:50010
-
+- `/api\hello`:`{"message":"Hello World"}`を返却
 
 ## go
 - ポート番号:50001
@@ -42,7 +42,7 @@
 
 ## ruby
 - ポート番号:50004
-- `hello/view`:`Hello, world!`を返却
+- `/hello/view`:`Hello, world!`を返却
 
 ## rust
 - ポート番号:50002
