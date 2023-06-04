@@ -1,5 +1,5 @@
-defmodule MyApiWeb.HelloController do
-  use MyApiWeb, :controller
+defmodule MyappWeb.HelloController do
+  use MyappWeb, :controller
 
   def world(conn, _params) do
     json(conn, %{message: "Hello World"})

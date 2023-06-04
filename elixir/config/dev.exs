@@ -1,12 +1,13 @@
-import Config
+import Mix.Config
 
 # Configure your database
-config :my_app, MyApp.Repo,
+config :myapp, Myapp.Repo,
   adapter: Ecto.Adapters.Postgres,
+  database: "mosa-db",
   username: System.get_env("POSTGRES_USER"),
   password: System.get_env("POSTGRES_PASSWORD"),
-  database: System.get_env("POSTGRES_DB"),
-  hostname: mosa-db
+  hostname: "mosa-db",
+  show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
 # For development, we disable any cache and enable

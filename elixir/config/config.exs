@@ -7,8 +7,11 @@
 # General application configuration
 import Config
 
-config :myapp,
-  ecto_repos: [Myapp.Repo]
+config :myapp, ecto_repos: [Myapp.Repo]
+
+config :myapp, Myapp.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  database: "mosa-db"
 
 # Configures the endpoint
 config :myapp, MyappWeb.Endpoint,
