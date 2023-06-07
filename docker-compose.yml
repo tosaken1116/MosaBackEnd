@@ -169,6 +169,7 @@ services:
     image: postgres:14
     volumes:
       - dbdata:/var/lib/postgresql/data/
+      - ./db/init:/docker-entrypoint-initdb.d
     env_file:
       - .env
     ports:
