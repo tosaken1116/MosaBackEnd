@@ -91,3 +91,36 @@ ALTER TABLE "reply" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id");
 ALTER TABLE "likes" ADD FOREIGN KEY ("posts_id") REFERENCES "posts" ("id");
 
 ALTER TABLE "likes" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id");
+
+INSERT INTO "users" ("id", "image_url", "name", "email")
+VALUES ('1', 'https://example.com/user1.jpg', 'User 1', 'user1@example.com');
+
+INSERT INTO "users" ("id", "image_url", "name", "email")
+VALUES ('2', 'https://example.com/user2.jpg', 'User 2', 'user2@example.com');
+
+INSERT INTO "rooms" ("id", "owner_id", "title", "desc", "is_public", "group_id", "start_time", "end_time", "count")
+VALUES ('1', '1', 'Room 1', 'Description for Room 1', true, NULL, '2023-06-08 09:00:00', '2023-06-08 10:00:00', 0);
+
+INSERT INTO "rooms" ("id", "owner_id", "title", "desc", "is_public", "group_id", "start_time", "end_time", "count")
+VALUES ('2', '2', 'Room 2', 'Description for Room 2', true, NULL, '2023-06-08 14:00:00', '2023-06-08 15:00:00', 0);
+
+INSERT INTO "groups" ("id", "owner_id", "name", "disc", "created_at", "is_public")
+VALUES ('1', '1', 'Group 1', 'Description for Group 1', '2023-06-08 10:00:00', true);
+
+INSERT INTO "invite_groups" ("user_id", "group_id")
+VALUES ('1', '1');
+
+INSERT INTO "users_groups" ("user_id", "group_id")
+VALUES ('1', '1');
+
+INSERT INTO "following" ("user_id", "target_id")
+VALUES ('1', '2');
+
+INSERT INTO "posts" ("id", "user_id", "content", "created_at", "updata_at")
+VALUES ('1', '1', 'Post 1', '2023-06-08 12:00:00', '2023-06-08 12:30:00');
+
+INSERT INTO "reply" ("id", "posts_id", "user_id", "content", "created_at")
+VALUES ('1', '1', '2', 'Reply to Post 1', '2023-06-08 12:15:00');
+
+INSERT INTO "likes" ("posts_id", "user_id")
+VALUES ('1', '2');
