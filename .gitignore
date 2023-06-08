@@ -1,5 +1,5 @@
 .env
-
+.env.local
 #ruby
 # Ignore all logfiles and tempfiles.
 /log/*

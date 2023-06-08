@@ -1,15 +1,17 @@
 package main
 
 import (
+	"mosa/database"
+	"mosa/env"
+	router "mosa/routers"
+
 	"github.com/gin-gonic/gin"
 )
 
 func main(){
+	env.LoadEnv()
 	r := gin.Default()
-	r.GET("/hello", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message":"Hello World",
-		})
-	})
+	database.InitDb()
+	router.Routes(r)
 	r.Run()
 }
