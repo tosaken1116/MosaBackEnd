@@ -25,7 +25,7 @@ func InitDb() (err error){
 	if err != nil {
 		log.Fatal(err)
 	  }
-	if err := Psql.AutoMigrate(&Users{},&Likes{},&Posts{}); err != nil {
+	if err := Psql.AutoMigrate(&Likes{}); err != nil {
 		log.Fatal(err)
 	}
 
