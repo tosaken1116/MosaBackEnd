@@ -14,7 +14,23 @@ con <- dbConnect(
 
 
 #* @post /favorite
-function(user_id,post_id){
-dataset <-dbGetQuery(con,"INSERT INTO LIKES (user_id,posts_id) VALUES ($1,$2)",c(user_id,post_id))
-   dataset
+#* @param post_id The post ID
+#* @param user_id The user ID
+#* @serializer unboxedJSON
+function(post_id, user_id){
+   response <- list(message="",code=200)
+   tryCatch(
+      {
+         result <- dbGetQuery(con, "INSERT INTO LIKES (user_id,posts_id) VALUES ($1,$2)", c(user_id, post_id))
+         response$code <- 200
+         response$message <- "success"
+         response
+      },
+      warning = function(w){
+         response$code <- 400
+         response$message <- "insert failed"
+         response
+      }
+   )
+
 }
