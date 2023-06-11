@@ -1604,6 +1604,7 @@ dependencies = [
  "dotenv",
  "sea-orm",
  "serde",
+ "serde_json",
  "uuid",
 ]
 
