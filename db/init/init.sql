@@ -29,17 +29,20 @@ CREATE TABLE "groups" (
 
 CREATE TABLE "invite_groups" (
   "user_id" uuid,
-  "group_id" uuid
+  "group_id" uuid,
+  PRIMARY KEY (user_id, group_id)
 );
 
 CREATE TABLE "users_groups" (
   "user_id" uuid,
-  "group_id" uuid
+  "group_id" uuid,
+  PRIMARY KEY (user_id, group_id)
 );
 
 CREATE TABLE "following" (
   "user_id" uuid,
-  "target_id" uuid
+  "target_id" uuid,
+  PRIMARY KEY (user_id, target_id)
 );
 
 CREATE TABLE "posts" (
@@ -60,7 +63,8 @@ CREATE TABLE "replies" (
 
 CREATE TABLE "likes" (
   "post_id" uuid,
-  "user_id" uuid
+  "user_id" uuid,
+  PRIMARY KEY (user_id, post_id)
 );
 
 ALTER TABLE "rooms" ADD FOREIGN KEY ("owner_id") REFERENCES "users" ("id");
