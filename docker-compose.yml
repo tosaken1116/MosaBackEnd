@@ -142,7 +142,7 @@ services:
         dockerfile: Dockerfile
     container_name: mosa-php
     ports:
-      - '50012:80'
+      - '50012:8000'
     volumes:
       - ./php:/app
 
