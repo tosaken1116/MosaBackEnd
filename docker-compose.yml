@@ -11,6 +11,8 @@ services:
       - ./python:/app
     ports:
       - '50000:8000'
+    depends_on:
+      - db
     tty: true
 
   go:
