@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
-
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
 builder.WebHost.UseUrls("http://0.0.0.0:8080");
@@ -20,13 +18,6 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-app.UseCors(MyAllowSpecificOrigins);
-
-app.UseRouting();
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllers();
-});
 app.MapGet("/", () => "Hello World!");
 
 app.Run();
