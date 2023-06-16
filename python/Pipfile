@@ -8,6 +8,10 @@ fastapi = "*"
 uvicorn = "*"
 sqlalchemy = "*"
 pydantic = "*"
+psycopg2 = "*"
+sqlalchemy_utils = "*"
+requests  = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
