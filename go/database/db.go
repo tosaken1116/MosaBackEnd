@@ -12,7 +12,8 @@ import (
 var (
 	Psql *gorm.DB
 )
-func InitDb() (err error){
+
+func InitDb() (err error) {
 	dsn := fmt.Sprintf(
 		"host=%s user=%s password=%s dbname=%s port=%s",
 		env.DbHost,
@@ -21,11 +22,7 @@ func InitDb() (err error){
 		env.DbName,
 		env.DbPort,
 	)
-	Psql, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
-	if err != nil {
-		log.Fatal(err)
-	  }
-	if err := Psql.AutoMigrate(&Likes{}); err != nil {
+	if Psql, err = gorm.Open(postgres.Open(dsn), &gorm.Config{}); err != nil {
 		log.Fatal(err)
 	}
 
