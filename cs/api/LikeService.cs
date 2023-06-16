@@ -2,7 +2,7 @@ using System.Data;
 using Npgsql;
 using System.Threading.Tasks;
 
-public class GroupService
+public class LikeService
 {
     private static string Host = Environment.GetEnvironmentVariable("POSTGRES_HOST");
     private static string User = Environment.GetEnvironmentVariable("POSTGRES_USER");
@@ -17,22 +17,22 @@ public class GroupService
             Port,
             Password);
 
-    public async Task<Group> AddGroupAsync(Group group)
+    public async Task<Like> AddLikeAsync(Like like)
     {
         using var conn = new NpgsqlConnection(_connectionString);
         await conn.OpenAsync();
 
-        using var cmd = new NpgsqlCommand("INSERT INTO users_groups (user_id, group_id) VALUES (@userId, @groupId::uuid) RETURNING *;", conn);
-        cmd.Parameters.AddWithValue("userId", group.UserId);
-        cmd.Parameters.AddWithValue("groupId", group.GroupId);
+        using var cmd = new NpgsqlCommand("INSERT INTO likes(user_id, post_id) VALUES (@userId, @PostId::uuid) RETURNING *;", conn);
+        cmd.Parameters.AddWithValue("userId", like.UserId);
+        cmd.Parameters.AddWithValue("postId", like.PostId);
 
         using var reader = await cmd.ExecuteReaderAsync(CommandBehavior.SingleRow);
         await reader.ReadAsync();
 
-        return new Group
+        return new Like
         {
-            UserId = reader.GetString(0),
-            GroupId = reader.GetGuid(1)
+            UserId = reader.GetString(1),
+            PostId = reader.GetGuid(0)
         };
     }
 }
