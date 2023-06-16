@@ -22,6 +22,7 @@ func InitDb() (err error) {
 		env.DbName,
 		env.DbPort,
 	)
+
 	if Psql, err = gorm.Open(postgres.Open(dsn), &gorm.Config{}); err != nil {
 		log.Fatal(err)
 	}

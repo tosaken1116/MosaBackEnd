@@ -3,5 +3,8 @@
   "cmake.sourceDirectory": "/root/mosa/MosaBackEnd/cpp/myapp",
   "files.watcherExclude": {
     "**/target": true
-  }
+  },
+  "cSpell.words": [
+    "dotenv"
+  ]
 }
