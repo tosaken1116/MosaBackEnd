@@ -1,7 +1,9 @@
+using Microsoft.AspNetCore.Mvc;
+
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
 builder.WebHost.UseUrls("http://0.0.0.0:8080");
-builder.Services.AddScoped<GroupService>();
+builder.Services.AddScoped<LikeService>();
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.Converters.Add(new GuidJsonConverter());
