@@ -21,7 +21,7 @@ function(post_id, user_id){
    response <- list(message="",code=200)
    tryCatch(
       {
-         result <- dbGetQuery(con, "INSERT INTO LIKES (user_id,posts_id) VALUES ($1,$2)", c(user_id, post_id))
+         result <- dbGetQuery(con, "INSERT INTO LIKES (user_id,post_id) VALUES ($1,$2)", c(user_id, post_id))
          response$code <- 200
          response$message <- "success"
          response
