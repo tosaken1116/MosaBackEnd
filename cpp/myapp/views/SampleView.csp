@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<%c++
+    auto displayID=@@.get<std::string>("id");
+    auto displayName=@@.get<std::string>("name");
+    auto displayValue=@@.get<std::string>("value");
+%>
+<head>
+    <meta charset="UTF-8">
+    <title>Button Count Example</title>
+</head>
+
+<body>
+    <div>The ID is {% displayID %}.</div>
+    <div>It's a {% displayName %} and price is {% displayValue %} yen. </div>
+</body>
+</html>
