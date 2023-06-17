@@ -78,6 +78,7 @@ model rooms {
   start_time  DateTime? @db.Timestamp(6)
   end_time    DateTime? @db.Timestamp(6)
   count       Int?      @default(0)
+  room_id     String?   @db.VarChar
   groups      groups?   @relation(fields: [group_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   users       users?    @relation(fields: [owner_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
