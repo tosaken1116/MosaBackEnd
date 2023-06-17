@@ -1,0 +1,108 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model following {
+  user_id                          String @db.VarChar
+  target_id                        String @db.VarChar
+  users_following_target_idTousers users  @relation("following_target_idTousers", fields: [target_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users_following_user_idTousers   users  @relation("following_user_idTousers", fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([user_id, target_id])
+}
+
+model groups {
+  id            String          @id @db.Uuid
+  owner_id      String?         @db.VarChar
+  name          String          @db.VarChar
+  description   String          @db.VarChar
+  created_at    DateTime?       @db.Timestamp(6)
+  is_public     Boolean?        @default(true)
+  users         users?          @relation(fields: [owner_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  invite_groups invite_groups[]
+  rooms         rooms[]
+  users_groups  users_groups[]
+}
+
+model invite_groups {
+  user_id  String @db.VarChar
+  group_id String @db.Uuid
+  groups   groups @relation(fields: [group_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users    users  @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([user_id, group_id])
+}
+
+model likes {
+  post_id String @db.Uuid
+  user_id String @db.VarChar
+  posts   posts  @relation(fields: [post_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users   users  @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([user_id, post_id])
+}
+
+model posts {
+  id         String    @id @db.Uuid
+  user_id    String?   @db.VarChar
+  content    String    @db.VarChar
+  created_at String?   @db.VarChar
+  update_at  String?   @db.VarChar
+  likes      likes[]
+  users      users?    @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  replies    replies[]
+}
+
+model replies {
+  id         String    @id @db.Uuid
+  post_id    String?   @db.Uuid
+  user_id    String?   @db.VarChar
+  content    String    @db.VarChar
+  created_at DateTime? @db.Timestamp(6)
+  posts      posts?    @relation(fields: [post_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users      users?    @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model rooms {
+  id          String    @id @db.Uuid
+  owner_id    String?   @db.VarChar
+  title       String    @db.VarChar
+  description String    @db.VarChar
+  is_public   Boolean?  @default(true)
+  group_id    String?   @db.Uuid
+  start_time  DateTime? @db.Timestamp(6)
+  end_time    DateTime? @db.Timestamp(6)
+  count       Int?      @default(0)
+  groups      groups?   @relation(fields: [group_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users       users?    @relation(fields: [owner_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model users {
+  id                                   String          @id @db.VarChar
+  image_url                            String?         @db.VarChar
+  name                                 String?         @db.VarChar
+  email                                String          @db.VarChar
+  following_following_target_idTousers following[]     @relation("following_target_idTousers")
+  following_following_user_idTousers   following[]     @relation("following_user_idTousers")
+  groups                               groups[]
+  invite_groups                        invite_groups[]
+  likes                                likes[]
+  posts                                posts[]
+  replies                              replies[]
+  rooms                                rooms[]
+  users_groups                         users_groups[]
+}
+
+model users_groups {
+  user_id  String @db.VarChar
+  group_id String @db.Uuid
+  groups   groups @relation(fields: [group_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users    users  @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([user_id, group_id])
+}
