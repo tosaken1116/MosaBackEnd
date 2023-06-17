@@ -51,14 +51,13 @@ services:
       context: ./ruby
       dockerfile: Dockerfile
     container_name: mosa-ruby
-    command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails db:create && bundle exec rails db:migrate && bundle exec rails s -p 8080 -b '0.0.0.0'"
+    command:  bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 8080 -b '0.0.0.0'"
     ports:
       - 50004:8080
     volumes:
       - ./ruby:/app
     depends_on:
       - db
-    env_file: .env
 
   cpp:
     build:
