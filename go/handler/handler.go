@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"fmt"
 	"mosa/cruds"
 	"mosa/schemas"
 	"net/http"
@@ -25,4 +26,18 @@ func HandleDeleteFavorite(c *gin.Context){
 			"message": "delete success",
 		})
 	}
+}
+
+func HandleGetPostDetail(c *gin.Context){
+	result,err := cruds.GetPostDetail(c.Param("post_id"))
+	if err != nil{
+		fmt.Println(err)
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"message": "get failed",
+		})
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"data": result,
+	})
+
 }

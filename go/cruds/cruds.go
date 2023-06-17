@@ -1,6 +1,7 @@
 package cruds
 
 import (
+	"fmt"
 	"mosa/database"
 )
 
@@ -10,4 +11,14 @@ func DeleteFavorite(user_id, posts_id string)error {
 		return result.Error
 	}
 	return nil
+}
+
+func GetPostDetail(post_id string)(m []*database.Post,err error){
+	fmt.Println(post_id)
+	if	err = database.Psql.Preload("Replies").First(&m, "id = ?", post_id).Error	;err != nil{
+		// if err = database.Psql.Where("id = ?",post_id).Preload("Replies").Find(&m).Error;err != nil{
+		return
+	}
+
+	return
 }
