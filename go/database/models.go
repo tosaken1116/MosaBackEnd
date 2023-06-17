@@ -20,3 +20,8 @@ type Reply struct {
 	Content   string `gorm:"not null"`
 	CreatedAt string
 }
+
+type LikePost struct {
+	Likes
+	Post
+}

@@ -1,7 +1,6 @@
 package cruds
 
 import (
-	"fmt"
 	"mosa/database"
 )
 
@@ -14,11 +13,16 @@ func DeleteFavorite(user_id, posts_id string)error {
 }
 
 func GetPostDetail(post_id string)(m []*database.Post,err error){
-	fmt.Println(post_id)
 	if	err = database.Psql.Preload("Replies").First(&m, "id = ?", post_id).Error	;err != nil{
-		// if err = database.Psql.Where("id = ?",post_id).Preload("Replies").Find(&m).Error;err != nil{
 		return
 	}
 
+	return
+}
+
+func GetMyFavorite(user_id string)(m []*database.Post,err error){
+	if	err = database.Psql.Table("likes").Select("posts.*").Joins("JOIN posts ON likes.post_id = posts.id").Where("likes.user_id = ?", user_id).Find(&m).Error;err != nil{
+		return
+	}
 	return
 }
