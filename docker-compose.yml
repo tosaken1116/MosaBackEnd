@@ -125,7 +125,6 @@ services:
       - ./elixir:/app
     depends_on:
       - db
-    env_file: .env
 
   kotlin:
     build:

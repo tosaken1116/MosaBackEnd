@@ -3,10 +3,10 @@ import Mix.Config
 # Configure your database
 config :myapp, Myapp.Repo,
   adapter: Ecto.Adapters.Postgres,
-  database: "mosa-db",
-  username: System.get_env("POSTGRES_USER"),
-  password: System.get_env("POSTGRES_PASSWORD"),
-  hostname: "mosa-db",
+  database: "mosa_db",
+  username: "mosa_admin",
+  password: "Z70w7jJCMgBv36CqefBOu8HeAhiLuI8O",
+  hostname: "db",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
@@ -27,7 +27,8 @@ config :myapp, MyappWeb.Endpoint,
   watchers: [
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
     esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
-  ]
+  ],
+  csrf_protection: false
 
 # ## SSL Support
 #
