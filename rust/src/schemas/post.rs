@@ -1,7 +1,7 @@
 use serde::{Serialize, Deserialize};
-use uuid::Uuid;
+
 #[derive(Debug, Serialize, Deserialize)]
-pub struct PostInvitation{
-    pub group_id: Uuid,
+pub struct PostPost{
     pub user_id: String,
+    pub content: String,
 }

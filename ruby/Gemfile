@@ -73,3 +73,6 @@ end
 
 gem "pg"
 gem 'dotenv'
+gem 'hirb'
+gem 'hirb-unicode'
+gem 'dotenv'
