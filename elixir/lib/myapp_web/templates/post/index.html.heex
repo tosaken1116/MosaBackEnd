@@ -5,6 +5,8 @@
     <tr>
       <th>User</th>
       <th>Content</th>
+      <th>Created at</th>
+      <th>Update at</th>
 
       <th></th>
     </tr>
@@ -14,6 +16,8 @@
     <tr>
       <td><%= post.user_id %></td>
       <td><%= post.content %></td>
+      <td><%= post.created_at %></td>
+      <td><%= post.update_at %></td>
 
       <td>
         <span><%= link "Show", to: Routes.post_path(@conn, :show, post) %></span>

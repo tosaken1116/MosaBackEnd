@@ -12,6 +12,8 @@ defmodule Myapp.PostsFixtures do
       attrs
       |> Enum.into(%{
         content: "some content",
+        created_at: "some created_at",
+        update_at: "some update_at",
         user_id: "some user_id"
       })
       |> Myapp.Posts.create_post()

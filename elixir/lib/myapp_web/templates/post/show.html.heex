@@ -12,6 +12,16 @@
     <%= @post.content %>
   </li>
 
+  <li>
+    <strong>Created at:</strong>
+    <%= @post.created_at %>
+  </li>
+
+  <li>
+    <strong>Update at:</strong>
+    <%= @post.update_at %>
+  </li>
+
 </ul>
 
 <span><%= link "Edit", to: Routes.post_path(@conn, :edit, @post) %></span> |

@@ -40,19 +40,19 @@ defmodule MyappWeb.PostController do
   def update(conn, %{"id" => id, "post" => post_params}) do
     post = Posts.get_post!(id)
 
-    changeset = Posts.changeset(post, post_params)
-
-    case Repo.update(changeset) do
-      {:ok, _updated_post} ->
+    case Posts.update_post(post, post_params) do
+      {:ok, post} ->
         conn
-        |> put_flash(:info, "Post updated successfully.")
-        |> redirect(to: Routes.post_path(conn, :show, post))
 
-      {:error, changeset} ->
-        render(conn, "edit.html", post: post, changeset: changeset)
+        |> put_resp_content_type("application/json")
+        |> json(%{result: "clear"})
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+        conn
+        |> put_resp_content_type("application/json")
+        |> json(%{result: "error"})
     end
   end
-
 
   def delete(conn, %{"id" => id}) do
     post = Posts.get_post!(id)

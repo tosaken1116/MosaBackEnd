@@ -13,6 +13,14 @@
   <%= textarea f, :content %>
   <%= error_tag f, :content %>
 
+  <%= label f, :created_at %>
+  <%= text_input f, :created_at %>
+  <%= error_tag f, :created_at %>
+
+  <%= label f, :update_at %>
+  <%= text_input f, :update_at %>
+  <%= error_tag f, :update_at %>
+
   <div>
     <%= submit "Save" %>
   </div>

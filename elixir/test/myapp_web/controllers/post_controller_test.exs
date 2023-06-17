@@ -3,9 +3,9 @@ defmodule MyappWeb.PostControllerTest do
 
   import Myapp.PostsFixtures
 
-  @create_attrs %{content: "some content", user_id: "some user_id"}
-  @update_attrs %{content: "some updated content", user_id: "some updated user_id"}
-  @invalid_attrs %{content: nil, user_id: nil}
+  @create_attrs %{content: "some content", created_at: "some created_at", update_at: "some update_at", user_id: "some user_id"}
+  @update_attrs %{content: "some updated content", created_at: "some updated created_at", update_at: "some updated update_at", user_id: "some updated user_id"}
+  @invalid_attrs %{content: nil, created_at: nil, update_at: nil, user_id: nil}
 
   describe "index" do
     test "lists all posts", %{conn: conn} do

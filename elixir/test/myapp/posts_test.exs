@@ -8,7 +8,7 @@ defmodule Myapp.PostsTest do
 
     import Myapp.PostsFixtures
 
-    @invalid_attrs %{content: nil, user_id: nil}
+    @invalid_attrs %{content: nil, created_at: nil, update_at: nil, user_id: nil}
 
     test "list_posts/0 returns all posts" do
       post = post_fixture()
@@ -21,10 +21,12 @@ defmodule Myapp.PostsTest do
     end
 
     test "create_post/1 with valid data creates a post" do
-      valid_attrs = %{content: "some content", user_id: "some user_id"}
+      valid_attrs = %{content: "some content", created_at: "some created_at", update_at: "some update_at", user_id: "some user_id"}
 
       assert {:ok, %Post{} = post} = Posts.create_post(valid_attrs)
       assert post.content == "some content"
+      assert post.created_at == "some created_at"
+      assert post.update_at == "some update_at"
       assert post.user_id == "some user_id"
     end
 
@@ -34,10 +36,12 @@ defmodule Myapp.PostsTest do
 
     test "update_post/2 with valid data updates the post" do
       post = post_fixture()
-      update_attrs = %{content: "some updated content", user_id: "some updated user_id"}
+      update_attrs = %{content: "some updated content", created_at: "some updated created_at", update_at: "some updated update_at", user_id: "some updated user_id"}
 
       assert {:ok, %Post{} = post} = Posts.update_post(post, update_attrs)
       assert post.content == "some updated content"
+      assert post.created_at == "some updated created_at"
+      assert post.update_at == "some updated update_at"
       assert post.user_id == "some updated user_id"
     end
 
