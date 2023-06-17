@@ -41,3 +41,16 @@ func HandleGetPostDetail(c *gin.Context){
 	})
 
 }
+
+func HandleGetMyFavorite(c *gin.Context){
+	result,err := cruds.GetMyFavorite(c.Param("user_id"))
+	if err != nil{
+		fmt.Println(err)
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"message": "get failed",
+		})
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"data": result,
+	})
+}

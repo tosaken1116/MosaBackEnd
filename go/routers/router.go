@@ -11,5 +11,6 @@ func Routes(r gin.IRouter){
 	{
 		v1.DELETE("/favorite",handler.HandleDeleteFavorite)
 		v1.GET("/posts/:post_id",handler.HandleGetPostDetail)
+		v1.GET("/favorite/:user_id",handler.HandleGetMyFavorite)
 	}
 }
