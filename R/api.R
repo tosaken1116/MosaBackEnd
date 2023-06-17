@@ -12,6 +12,21 @@ con <- dbConnect(
    password = Sys.getenv("POSTGRES_PASSWORD")
 )
 
+#' @filter cors
+cors <- function(req, res) {
+  
+  res$setHeader("Access-Control-Allow-Origin", "*")
+  
+  if (req$REQUEST_METHOD == "OPTIONS") {
+    res$setHeader("Access-Control-Allow-Methods","*")
+    res$setHeader("Access-Control-Allow-Headers", req$HTTP_ACCESS_CONTROL_REQUEST_HEADERS)
+    res$status <- 200 
+    return(list())
+  } else {
+    plumber::forward()
+  }
+}
+
 
 #* @post /favorite
 #* @param post_id The post ID
@@ -21,7 +36,8 @@ function(post_id, user_id){
    response <- list(message="",code=200)
    tryCatch(
       {
-         result <- dbGetQuery(con, "INSERT INTO LIKES (user_id,post_id) VALUES ($1,$2)", c(user_id, post_id))
+         query <- sprintf("INSERT INTO likes (post_id, user_id) VALUES ('%s','%s')", post_id, user_id)
+         result <- dbGetQuery(con, query)
          response$code <- 200
          response$message <- "success"
          response
