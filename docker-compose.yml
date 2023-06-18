@@ -69,6 +69,8 @@ services:
     command: bash -c "cd /app/myapp/build && ./myapp"
     ports:
       - 50005:8080
+    depends_on:
+      - db
 
   cs:
     build:

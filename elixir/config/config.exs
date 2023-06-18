@@ -11,7 +11,7 @@ config :myapp, ecto_repos: [Myapp.Repo]
 
 config :myapp, Myapp.Repo,
   adapter: Ecto.Adapters.Postgres,
-  database: "mosa-db"
+  database: System.get_env("POSTGRES_DB"),
 
 # Configures the endpoint
 config :myapp, MyappWeb.Endpoint,

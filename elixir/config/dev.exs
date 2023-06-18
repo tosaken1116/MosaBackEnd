@@ -3,10 +3,10 @@ import Mix.Config
 # Configure your database
 config :myapp, Myapp.Repo,
   adapter: Ecto.Adapters.Postgres,
-  database: "mosa_db",
-  username: "mosa_admin",
-  password: "Z70w7jJCMgBv36CqefBOu8HeAhiLuI8O",
-  hostname: "db",
+  database: System.get_env("POSTGRES_DB"),
+  username: System.get_env("POSTGRES_USER"),
+  password: System.get_env("POSTGRES_PASSWORD"),
+  hostname: System.get_env("POSTGRES_HOST"),,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
