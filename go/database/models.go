@@ -20,6 +20,7 @@ type Reply struct {
 	UserID    string
 	Content   string `gorm:"not null"`
 	CreatedAt string
+	User     User `gorm:"foreignKey:UserID;reference:ID" json:"user"`
 }
 
 type LikePost struct {
