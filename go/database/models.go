@@ -11,6 +11,7 @@ type Post struct {
 	CreatedAt string
 	UpdatedAt string
 	Replies   []Reply `gorm:"foreignKey:PostID"`
+	User     User `gorm:"foreignKey:UserID;reference:ID" json:"user"`
 }
 
 type Reply struct {
@@ -24,4 +25,11 @@ type Reply struct {
 type LikePost struct {
 	Likes
 	Post
+}
+
+type User struct{
+	ID string `gorm:"primaryKey"`
+	Name string
+	Email string
+	ImageUrl string
 }
