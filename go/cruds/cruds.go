@@ -13,7 +13,7 @@ func DeleteFavorite(user_id, posts_id string)error {
 }
 
 func GetPostDetail(post_id string)(m []*database.Post,err error){
-	if	err = database.Psql.Preload("Replies").First(&m, "id = ?", post_id).Error	;err != nil{
+	if	err = database.Psql.Preload("Replies").Preload("User").First(&m, "id = ?", post_id).Error	;err != nil{
 		return
 	}
 
